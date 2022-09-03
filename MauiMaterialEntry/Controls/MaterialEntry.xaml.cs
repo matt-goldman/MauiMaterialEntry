@@ -25,6 +25,22 @@ public partial class MaterialEntry : ContentView
             _yScale = -15;
             _xScale = -40;
         }
+
+		BindingContext = this;
+	}
+
+	public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(MaterialEntry), null);
+	public string Text
+	{ 
+		get => (string)GetValue(TextProperty);
+		set => SetValue(TextProperty, value);
+	}
+
+	public static readonly BindableProperty LabelProperty = BindableProperty.Create(nameof(Label), typeof(string), typeof(MaterialEntry), null);
+	public string Label
+	{
+		get => (String)GetValue(LabelProperty);
+		set => SetValue(LabelProperty, value);
 	}
 
 	private void MEEntry_Focused(object sender, FocusEventArgs e)

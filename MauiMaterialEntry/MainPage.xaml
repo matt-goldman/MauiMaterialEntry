@@ -23,13 +23,18 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="Welcome to .NET Multi-platform App UI"
+                Text="{Binding Source={x:Reference MyEntry}, Path=Text}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-            <controls:MaterialEntry HorizontalOptions="Center"/>
+            <controls:MaterialEntry HorizontalOptions="Center"
+                                    Label="Material Entry"
+                                    x:Name="MyEntry"/>
+
+            <Entry HorizontalOptions="Center"
+                   Placeholder="Standard entry"/>
 
             <Button
                 x:Name="CounterBtn"

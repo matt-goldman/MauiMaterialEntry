@@ -37,9 +37,10 @@
                                       Focused="MEEntry_Focused"
                                       Unfocused="MEEntry_Unfocused"
                                       x:Name="MEEntry"
+                                      Text="{Binding Text}"
                                       WidthRequest="200"/>
         </Border>
-        <Label Text="Enter some text..."
+        <Label Text="{Binding Label}"
                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
                HorizontalOptions="Center"
                VerticalOptions="Center"
