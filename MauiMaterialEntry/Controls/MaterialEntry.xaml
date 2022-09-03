@@ -3,12 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:MauiMaterialEntry.Controls"
              x:Class="MauiMaterialEntry.Controls.MaterialEntry">
-    <Grid>
+    <Grid WidthRequest="200">
         <Border BackgroundColor="Transparent"
-                Stroke="{StaticResource Primary}"
                 StrokeShape="RoundRectangle 5"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
+                HorizontalOptions="Center"
+                x:Name="MEBorder">
+            <Border.Triggers>
+                <DataTrigger TargetType="Border"
+                             Binding="{Binding Source={x:Reference MEEntry}, Path=IsFocused}"
+                             Value="True">
+                    <Setter Property="Stroke"
+                            Value="{StaticResource Primary}"/>
+                    <Setter Property="StrokeThickness"
+                            Value="3"/>
+                </DataTrigger>
+                <DataTrigger TargetType="Border"
+                             Binding="{Binding Source={x:Reference MEEntry}, Path=IsFocused}"
+                             Value="False">
+                    <Setter Property="Stroke"
+                            Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    <Setter Property="StrokeThickness"
+                            Value="1"/>
+                </DataTrigger>
+            </Border.Triggers>
             <Border.Padding>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="Android" Value="10,0,10,0"/>
@@ -25,6 +43,21 @@
                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
                HorizontalOptions="Center"
                VerticalOptions="Center"
-               x:Name="MELabel" />
+               x:Name="MELabel">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference MEEntry}, Path=IsFocused}"
+                             Value="True">
+                    <Setter Property="TextColor"
+                            Value="{StaticResource Primary}"/>
+                </DataTrigger>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference MEEntry}, Path=IsFocused}"
+                             Value="False">
+                    <Setter Property="TextColor"
+                            Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
     </Grid>
 </ContentView>

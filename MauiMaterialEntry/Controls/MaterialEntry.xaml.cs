@@ -5,13 +5,19 @@ public partial class MaterialEntry : ContentView
 	private readonly int _yScale;
 	private readonly int _xScale;
 
+	private readonly Color _primary;
+
 	public MaterialEntry()
 	{
 		InitializeComponent();
 
-		if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
+        var rd = App.Current.Resources.MergedDictionaries.First();
+
+		_primary = (Color)rd["Primary"];
+
+        if (DeviceInfo.Current.Platform == DevicePlatform.Android || DeviceInfo.Current.Platform == DevicePlatform.iOS)
 		{
-			_yScale = -20;
+			_yScale = -18;
 			_xScale = -50;
 		}
 		else if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
@@ -24,6 +30,8 @@ public partial class MaterialEntry : ContentView
 	private void MEEntry_Focused(object sender, FocusEventArgs e)
 	{
 		//MELabel.IsVisible = false;
+		MEBorder.Stroke = (Color)_primary;
+		MELabel.TextColor = (Color)_primary;
 		ScaleLabelDown();
     }
 
