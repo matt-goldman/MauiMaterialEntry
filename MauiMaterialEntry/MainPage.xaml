@@ -29,8 +29,7 @@
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-            <controls:BorderlessEntry Placeholder="Enter some text..."
-                                      HorizontalOptions="Center"/>
+            <controls:MaterialEntry HorizontalOptions="Center"/>
 
             <Button
                 x:Name="CounterBtn"

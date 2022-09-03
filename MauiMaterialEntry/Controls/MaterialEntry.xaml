@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiMaterialEntry.Controls"
+             x:Class="MauiMaterialEntry.Controls.MaterialEntry">
+    <Grid>
+        <Border BackgroundColor="Transparent"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="RoundRectangle 5"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+            <Border.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="10,0,10,0"/>
+                </OnPlatform>
+            </Border.Padding>
+            <controls:BorderlessEntry VerticalOptions="Center"
+                                      HorizontalOptions="Center"
+                                      Focused="MEEntry_Focused"
+                                      Unfocused="MEEntry_Unfocused"
+                                      x:Name="MEEntry"
+                                      WidthRequest="200"/>
+        </Border>
+        <Label Text="Enter some text..."
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               x:Name="MELabel" />
+    </Grid>
+</ContentView>
