@@ -1,9 +1,30 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:MauiMaterialEntry.Controls"
              x:Class="MauiMaterialEntry.Controls.MaterialEntry">
     <Grid WidthRequest="200">
+        <Label Text="{Binding Label}"
+               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               InputTransparent="True"
+               x:Name="MELabel">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference MEEntry}, Path=IsFocused}"
+                             Value="True">
+                    <Setter Property="TextColor"
+                            Value="{StaticResource Primary}"/>
+                </DataTrigger>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference MEEntry}, Path=IsFocused}"
+                             Value="False">
+                    <Setter Property="TextColor"
+                            Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
         <Border BackgroundColor="Transparent"
                 StrokeShape="RoundRectangle 5"
                 VerticalOptions="Center"
@@ -38,27 +59,18 @@
                                       Unfocused="MEEntry_Unfocused"
                                       x:Name="MEEntry"
                                       Text="{Binding Text}"
-                                      WidthRequest="200"/>
+                                      WidthRequest="200"
+                                      HeightRequest="{OnPlatform iOS=40, MacCatalyst=40}">
+                <controls:BorderlessEntry.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS"
+                            Value="20,0,20,0"/>
+                        <On Platform="MacCatalyst"
+                            Value="20,0,20,0"/>
+                    </OnPlatform>
+                </controls:BorderlessEntry.Margin>
+
+            </controls:BorderlessEntry>
         </Border>
-        <Label Text="{Binding Label}"
-               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               x:Name="MELabel">
-            <Label.Triggers>
-                <DataTrigger TargetType="Label"
-                             Binding="{Binding Source={x:Reference MEEntry}, Path=IsFocused}"
-                             Value="True">
-                    <Setter Property="TextColor"
-                            Value="{StaticResource Primary}"/>
-                </DataTrigger>
-                <DataTrigger TargetType="Label"
-                             Binding="{Binding Source={x:Reference MEEntry}, Path=IsFocused}"
-                             Value="False">
-                    <Setter Property="TextColor"
-                            Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                </DataTrigger>
-            </Label.Triggers>
-        </Label>
     </Grid>
 </ContentView>
